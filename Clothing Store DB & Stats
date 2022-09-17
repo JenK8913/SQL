@@ -1,0 +1,28 @@
+--Create a quick Clothing Store database
+
+CREATE TABLE Clothing (id INTEGER PRIMARY KEY, product TEXT, price INTEGER, size TEXT, color TEXT, quantity INTEGER, gender TEXT);
+
+INSERT into Clothing VALUES (1, "Crew Neck Shirt", 10.00, "M", "Blue", 4, "Men");
+INSERT into Clothing VALUES (2, "Capri Pants", 17.00, "L", "Black", 3, "Women");
+INSERT into Clothing VALUES (3, "Shorts", 13.00, "S", "Grey", 8, "Men");
+INSERT into Clothing VALUES (4, "Socks 3-Pack", 9.00, "M", "Black", 3, "Men");
+INSERT into Clothing VALUES (5, "Plaid Pajama Pants", 16.00, "L", "Red/White", 7, "Women");
+INSERT into Clothing VALUES (6, "V-Neck Shirt", 11.00, "L", "Maroon", 5, "Women");
+INSERT into Clothing VALUES (7, "Women's Briefs 3-Pack", 12.00, "M", "Grey", 4, "Women");
+INSERT into Clothing VALUES (8, "Women's Tank Tops", 6.00, "M", "Black", 4, "Women");
+INSERT into Clothing VALUES (9, "Men's Boxers 3-Pack", 12.00, "L", "Grey", 5, "Men");
+INSERT into Clothing VALUES (10, "Women's Leggings", 10.00, "L", "Black", 11, "Women");
+INSERT into Clothing VALUES (11, "Sports Bras", 18.00, "M", "Purple", 4, "Women");
+INSERT into Clothing VALUES (12, "Women's Bikini 3-Pack", 12.00, "S", "Black", 5, "Women");
+INSERT into Clothing VALUES (13, "Unisex Logo T-Shirts", 8.00, "M", "Assortment", 20, "Unisex");
+INSERT into Clothing VALUES (14, "Beanie Hat", 7.50, "One Size", "Orange", 16, "Unisex");
+INSERT into Clothing VALUES (15, "Rain Coat", 25.00, "L", "Black", 4, "Unisex");
+
+--Show each product's price, size, gender and quantity. Sorted on price ascending from lowest to highest.
+SELECT product, price, size, quantity, gender FROM Clothing ORDER BY price;
+
+--Display the amount of products we have in each size ordered from highest to lowest.
+SELECT SUM(quantity), size FROM Clothing GROUP BY size ORDER BY SUM(quantity) desc;
+
+--What is the average price of clothing for each gender from most expensive to least expensive?
+SELECT AVG(price), gender FROM Clothing GROUP BY gender ORDER BY AVG(price) desc;
