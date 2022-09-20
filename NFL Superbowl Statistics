@@ -1,6 +1,6 @@
---This SQL Project demonstrates ability to use AND/OR, INSTR(), Aggregations, HAVING, WHERE and CASE.
+--This SQL Project demonstrates ability to use subqueries, UNION, AND/OR, INSTR(), Aggregations, HAVING, WHERE and CASE.
 
---Table features basic Super Bowl information from years 1967-2000.
+--This table features basic Super Bowl information from years 1967-2000.
 CREATE TABLE superbowls(id INTEGER PRIMARY KEY AUTOINCREMENT,Date TEXT,SB TEXT, Winner TEXT, Winner_Pts INTEGER,Loser TEXT,Loser_Pts INTEGER,MVP TEXT,Stadium    TEXT,City TEXT,State TEXT);
 
 INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,City,State) VALUES ('Feb 2 2020','LIV (54)','Kansas City Chiefs',31,'San Francisco 49ers',20,'Patrick Mahomes','Hard Rock Stadium','Miami Gardens','Florida');
@@ -57,6 +57,13 @@ INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,Cit
 INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,City,State) VALUES ('Jan 12 1969','III (3)','New York Jets',16,'Baltimore Colts',7,'Joe Namath+','Orange Bowl','Miami','Florida');
 INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,City,State) VALUES ('Jan 14 1968','II (2)','Green Bay Packers',33,'Oakland Raiders',14,'Bart Starr+','Orange Bowl','Miami','Florida');
 INSERT INTO superbowls(Date,SB,Winner,Winner_Pts,Loser,Loser_Pts,MVP,Stadium,City,State) VALUES ('Jan 15 1967','I (1)','Green Bay Packers',35,'Kansas City Chiefs',10,'Bart Starr+','Memorial Coliseum','Los Angeles','California');
+
+--This query calculates how many superbowl appearances each team had
+--Since Teams appeared both in the "Winners" and "Losers" column, I needed to perform a combination of Count, SUM, UNION and subquery to get desired results.
+SELECT Winner as nfl_team, SUM(WinTeam) as appearances FROM
+(SELECT Winner, COUNT(Winner) as WinTeam FROM superbowls group by Winner
+UNION
+SELECT Loser, COUNT(Loser) as LoseTeam FROM superbowls group by Loser) GROUP BY nfl_team ORDER BY appearances desc;
 
 --Queries on Average Winning Points greater than 30
 SELECT Winner, AVG(Winner_Pts) AS Avg_Winning_Pts FROM superbowls GROUP BY Winner HAVING Avg_Winning_Pts > 30;
