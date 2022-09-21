@@ -19,10 +19,18 @@ INSERT into Clothing VALUES (14, "Beanie Hat", 7.50, "One Size", "Orange", 16, "
 INSERT into Clothing VALUES (15, "Rain Coat", 25.00, "L", "Black", 4, "Unisex");
 
 --Show each product's price, size, gender and quantity. Sorted on price ascending from lowest to highest.
-SELECT product, price, size, quantity, gender FROM Clothing ORDER BY price;
+SELECT product, price, size, quantity, gender 
+  FROM Clothing 
+  ORDER BY price;
 
 --Display the amount of products we have in each size ordered from highest to lowest.
-SELECT SUM(quantity), size FROM Clothing GROUP BY size ORDER BY SUM(quantity) desc;
+SELECT SUM(quantity), size 
+  FROM Clothing 
+  GROUP BY size 
+  ORDER BY SUM(quantity) desc;
 
 --What is the average price of clothing for each gender from most expensive to least expensive?
-SELECT AVG(price), gender FROM Clothing GROUP BY gender ORDER BY AVG(price) desc;
+SELECT AVG(price), gender 
+  FROM Clothing 
+  GROUP BY gender 
+  ORDER BY AVG(price) desc;
