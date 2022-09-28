@@ -1,0 +1,55 @@
+--This SQL database inserts two tables (singers, songs) and demonstrates the ability to perform joins.
+CREATE TABLE singers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    artist TEXT, 
+    genre TEXT);
+
+INSERT INTO singers (artist, genre) VALUES ("Lynyrd Skynyrd", "Rock");
+INSERT INTO singers (artist, genre) VALUES ("Alan Jackson", "Country");
+INSERT INTO singers (artist, genre) VALUES ("Black Pumas", "Rock");
+INSERT INTO singers (artist, genre) VALUES ("Taylor Swift", "Pop");
+INSERT INTO singers (artist, genre) VALUES ("Ed Sheeran", "Pop");
+INSERT INTO singers (artist, genre) VALUES ("Good Charlotte", "Punk");
+INSERT INTO singers (artist, genre) VALUES ("Ye","Hip Hop");
+INSERT INTO singers (artist, genre) VALUES ("Brandi Carlile", "Folk");
+INSERT INTO singers (artist, genre) VALUES ("Louis Armstrong", "Jazz");
+INSERT INTO singers (artist, genre) VALUES ("Jason Aldean", "Country");
+INSERT INTO singers (artist, genre) VALUES ("Adele", "Pop");
+INSERT INTO singers (artist, genre) VALUES ("Barenaked Ladies", "Rock");
+INSERT INTO singers (artist, genre) VALUES ("Eminem", "Hip Hop");
+INSERT INTO singers (artist, genre) VALUES ("Gloria Gaynor", "Soul");
+INSERT INTO singers (artist, genre) VALUES ("Otis Redding", "Soul");
+INSERT INTO singers (artist, genre) VALUES ("Michael Jackson", "Pop");
+
+
+CREATE TABLE songs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    artist_id INTEGER, song TEXT);
+
+INSERT INTO songs (artist_id, song) VALUES (10, "Dirt Road Anthem");
+INSERT INTO songs (artist_id, song) VALUES (14, "I Will Survive");
+INSERT INTO songs (artist_id, song) VALUES (13, "Stan");
+INSERT INTO songs (artist_id, song) VALUES (3, "Colors");
+INSERT INTO songs (artist_id, song) VALUES (2, "Chattahoochee");
+INSERT INTO songs (artist_id, song) VALUES (11, "Easy On Me");
+INSERT INTO songs (artist_id, song) VALUES (11, "Hello");
+INSERT INTO songs (artist_id, song) VALUES (9, "What a Wonderful World");
+INSERT INTO songs (artist_id, song) VALUES (4, "Blank Space");
+INSERT INTO songs (artist_id, song) VALUES (12, "If I Had $1000000");
+INSERT INTO songs (artist_id, song) VALUES (1, "Free Bird");
+INSERT INTO songs (artist_id, song) VALUES (15, "The Dock of the Bay");
+INSERT INTO songs (artist_id, song) VALUES (6, "Little Things");
+INSERT INTO songs (artist_id, song) VALUES (5, "Barcelona");
+INSERT INTO songs (artist_id, song) VALUES (5, "Shape of You");
+
+--Perform join on artists with their associated song.
+SELECT singers.artist, songs.song 
+    FROM singers
+    JOIN songs
+    ON singers.id=songs.artist_id;
+ 
+--Perform left outer join on artists and their associated song, indicating NULL if no songs are listed for that artist.
+SELECT singers.artist, songs.song 
+    FROM singers
+    LEFT OUTER JOIN songs
+    ON singers.id=songs.artist_id;   
